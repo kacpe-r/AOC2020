@@ -7,8 +7,8 @@ def count_product(file_path, number_of_products):
     with open(file_path) as f:
         numbers = [int(i) for i in f.readlines()]
 
-        set_of_three = (i for i in combinations(numbers, number_of_products) if sum(i) == current_year)
-        for i in set_of_three:
+        query_result = (i for i in combinations(numbers, number_of_products) if sum(i) == current_year)
+        for i in query_result:
             return (reduce(lambda x, y: x*y, i))
 
 if __name__ == '__main__':
