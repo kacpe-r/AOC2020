@@ -6,20 +6,24 @@ def get_route(data):
     positions = [{'x': 0, 'y': 0}]
     unique_houses = 1
     for symbol in data:
-        if symbol == '>':
-            move = {'x' :positions[-1]['x'] + 1, 'y': positions[-1]['y']}
-        if symbol == '<':
-            move = {'x': positions[-1]['x'] - 1, 'y': positions[-1]['y']}
-        if symbol == '^':
-            move = {'x': positions[-1]['x'], 'y': positions[-1]['y'] + 1}
-        if symbol == 'v':
-            move = {'x': positions[-1]['x'], 'y': positions[-1]['y'] - 1}
+        move = move_to_next(positions[-1], symbol)
 
         if move not in positions:
             unique_houses += 1
         positions.append(move)
 
     return unique_houses
+
+def move_to_next(previous_position, direction):
+    if direction == '>':
+        move = {'x' : previous_position['x'] + 1, 'y': previous_position['y']}
+    if direction == '<':
+        move = {'x': previous_position['x'] - 1, 'y': previous_position['y']}
+    if direction == '^':
+        move = {'x': previous_position['x'], 'y': previous_position['y'] + 1}
+    if direction == 'v':
+        move = {'x': previous_position['x'], 'y': previous_position['y'] - 1}
+    return move
 
 if __name__ == '__main__':
     print(get_route(get_data('./data')))
