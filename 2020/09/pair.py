@@ -13,8 +13,17 @@ def loop_over_list():
         if index >= preamble and is_number_in_sum(el, full_list, index) == False:
             return el
 
+def get_min_max_sum():
+    for st_in in range(0, len(full_list)):
+        for en_in in range(0, len(full_list)):
+            if en_in > st_in:
+                if sum(full_list[st_in:en_in]) == not_matching_value:
+                    return sum([min(full_list[st_in:en_in]), max(full_list[st_in:en_in])])
+
 if __name__ == '__main__':
     preamble = 25
-
     full_list = get_data('./data')
-    print(loop_over_list())
+    not_matching_value = loop_over_list()
+    print(not_matching_value)
+    print(get_min_max_sum())
+
